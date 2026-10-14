@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Keeps search engines from listing this page -->
+<meta name="robots" content="noindex, nofollow">
+<title>Admin — Dao Confectiones</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="logo-link">
+      <img src="Dao confectiones Logo.png" alt="Dao Confectiones logo" class="logo-img">
+      <span class="logo">Dao <span>Confectiones</span> <small>Admin</small></span>
+    </a>
+    <a class="back-link" href="../Frontend/index.html">View website →</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ LOGIN SCREEN (shown when signed out) ============ -->
+  <section id="login-view" class="card narrow" hidden>
+    <h1>Admin sign in</h1>
+    <p class="muted">Sign in to add or remove photos on the website.</p>
+
+    <form id="login-form">
+      <label for="login-email">Email</label>
+      <input type="email" id="login-email" required autocomplete="username">
+
+      <label for="login-password">Password</label>
+      <input type="password" id="login-password" required autocomplete="current-password">
+
+      <button type="submit" class="btn" id="login-btn">Sign in</button>
+      <p class="status" id="login-status"></p>
+    </form>
+  </section>
+
+  <!-- ============ DASHBOARD (shown when signed in) ============ -->
+  <section id="dashboard-view" hidden>
+
+    <div class="topbar">
+      <p class="muted">Signed in as <strong id="user-email"></strong></p>
+      <button class="btn btn-outline" id="signout-btn">Sign out</button>
+    </div>
+
+    <!-- Upload card -->
+    <div class="card">
+      <h2>Add photos</h2>
+      <p class="muted">Pick a section, choose one or more photos, and press Upload. They appear on that section's gallery page straight away.</p>
+
+      <form id="upload-form">
+        <label for="category-select">Which section?</label>
+        <select id="category-select">
+          <option value="cakes">Cakes</option>
+          <option value="bread">Bread</option>
+          <option value="snacks">Snacks</option>
+          <option value="catering">Catering</option>
+        </select>
+
+        <label for="file-input">Photos</label>
+        <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" multiple>
+
+        <label for="caption-input">Short caption (optional)</label>
+        <input type="text" id="caption-input" maxlength="400" placeholder="e.g. Birthday cake for Ada">
+
+        <button type="submit" class="btn" id="upload-btn">Upload</button>
+        <p class="status" id="upload-status"></p>
+      </form>
+    </div>
+
+    <!-- Manage card -->
+    <div class="card">
+      <h2>Manage uploaded photos</h2>
+      <p class="muted">Photos you upload here. The original photos that came with the site are built in and don't appear in this list.</p>
+
+      <div class="tabs" id="tabs"></div>
+      <p class="status" id="manage-status"></p>
+      <div class="admin-grid" id="admin-grid"></div>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- Supabase library (from a CDN), then your keys, then this page's logic -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase_config.js"></script>
+<script src="admin.js"></script>
+
+</body>
+</html>
